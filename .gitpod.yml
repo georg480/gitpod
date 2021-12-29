@@ -1,6 +1,6 @@
 tasks:
   - name: Allgemein 
-    before: if [ $Status_Prebuild_gitpod = 1 ]; then echo "workspace" $Status_Prebuild_gitpod && echo "test 2" && date ; else echo "prebuild" $Status_Prebuild_gitpod && Status_Prebuild_gitpod=2 && date  ; fi #if $Status_Prebuild_gitpod == 1 then echo "Start prebuild" && date && echo "Status_Prebuild_gitpod" $Status_Prebuild_gitpod && sudo apt-get update && echo "Ende prebuild update" && date && sudo apt-get install -y ccache && echo "Ende prebuild install" && date && ccache -M 11G && Status_Prebuild_gitpod=2 && echo "Ende prebuild" && date
+    before: if [ $Status_Prebuild_gitpod = 1 ]; then echo "workspace" $Status_Prebuild_gitpod && echo "test 2" && date ; else echo "prebuild" $Status_Prebuild_gitpod && Status_Prebuild_gitpod=2 && date && sudo apt-get update && sudo apt-get install -y ccache && echo "Ende prebuild install" && date && ccache -M 11G   ; fi #if $Status_Prebuild_gitpod == 1 then echo "Start prebuild" && date && echo "Status_Prebuild_gitpod" $Status_Prebuild_gitpod && sudo apt-get update && echo "Ende prebuild update" && date && sudo apt-get install -y ccache && echo "Ende prebuild install" && date && ccache -M 11G && Status_Prebuild_gitpod=2 && echo "Ende prebuild" && date
     init: echo "prebuild init " $Status_Prebuild_gitpod && Status_Prebuild_gitpod=3 && echo "prebuild init" && date 
     command: echo "prebuild command " $Status_Prebuild_gitpod && Status_Prebuild_gitpod=4 && echo "prebuild command" && date 
 #
