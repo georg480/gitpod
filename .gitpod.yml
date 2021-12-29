@@ -1,7 +1,7 @@
 tasks:
   - name: Allgemein 
     before: if $Status_Prebuild == 1 then echo "Start prebuild" && date && echo "Status_Prebuild" && echo $Status_Prebuild && sudo apt-get update && echo "Ende prebuild update" && date && sudo apt-get install -y ccache && echo "Ende prebuild install" && date && ccache -M 11G && Status_Prebuild=2 && echo "Ende prebuild" && date
-                                  else echo " Status_Prebuild ist in before " && echo $Status_Prebuild
+                                  else echo "Start Workspace  Status_Prebuild ist in before " && echo $Status_Prebuild
     env:
        Status_Prebuild: 1
     init: echo "prebuild init" && echo $Status_Prebuild && Status_Prebuild=3 && echo "prebuild init"
