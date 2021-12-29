@@ -1,11 +1,11 @@
 tasks:
   - name: Allgemein 
-    before: if $Status_Prebuild == 1 then echo "Start prebuild" && date && echo "Status_Prebuild" $Status_Prebuild && sudo apt-get update && echo "Ende prebuild update" && date && sudo apt-get install -y ccache && echo "Ende prebuild install" && date && ccache -M 11G && Status_Prebuild=2 && echo "Ende prebuild" && date
-                                  else echo "Start Workspace  Status_Prebuild ist in before " $Status_Prebuild
+    before: if [ $Status_Prebuild = 1 ]; then echo "workspace" $Status_Prebuild && echo "test 2"; else echo "prebuild" $Status_Prebuild && Status_Prebuild=2 ; fi #if $Status_Prebuild == 1 then echo "Start prebuild" && date && echo "Status_Prebuild" $Status_Prebuild && sudo apt-get update && echo "Ende prebuild update" && date && sudo apt-get install -y ccache && echo "Ende prebuild install" && date && ccache -M 11G && Status_Prebuild=2 && echo "Ende prebuild" && date
     env:
-       Status_Prebuild: 1
+       Status_Prebuild: 1 # 1 prebuild before ; 2 prebuild init 
     init: echo "prebuild init " $Status_Prebuild && Status_Prebuild=3 && echo "prebuild init"
     command: echo "prebuild command " $Status_Prebuild && Status_Prebuild=4 && echo "prebuild command"
+    if 
 #  ##
 # windows --enable-windows-build-signing
 #  - before: sudo apt-get install ccache -y # echo 'test before' # sh ./scripts/setup.sh#
