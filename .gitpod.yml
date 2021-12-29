@@ -1,5 +1,23 @@
 tasks:
-  - before: echo "Start prebuild" && date && sudo apt-get update && echo "Ende prebuild update" && date && sudo apt-get install -y ccache && echo "Ende prebuild install" && date && ccache -M 11G && echo "Ende prebuild" && date
+  - name: Allgemein 
+    before: echo "Start prebuild" && date && sudo apt-get update && echo "Ende prebuild update" && date && sudo apt-get install -y ccache && echo "Ende prebuild install" && date && ccache -M 11G && echo "Ende prebuild" && date
+    env:
+       Status_Prebuild: 1
+    init: echo "prebuild init" && $Status_Prebuild && Status_Prebuild=2 && echo "prebuild init"
+    command: echo "prebuild command" && $Status_Prebuild && Status_Prebuild=3 && echo "prebuild command"
+#  ##
+# windows --enable-windows-build-signing
+#  - before: sudo apt-get install ccache -y # echo 'test before' # sh ./scripts/setup.sh#
+#    init: ccache -M 50G #sudo apt-get install ccache -y #npm install
+#    command: ccache -M 51G #sudo apt-get install ccache -y # npm run dev
+#  - name: Database
+#    init: echo 'init database' #sh ./scripts/seed-database.sh
+#    command: npm start-db
+#    env:
+#      DB_HOST: localhost:3306
+#      DB_USER: readOnlyUser
+# Ports to expose on workspace startup
+
 # https://gitpod.io/#https://github.com/georg480/gitpod.git
 github:
   prebuilds:
